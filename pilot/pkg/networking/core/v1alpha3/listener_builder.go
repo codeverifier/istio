@@ -138,6 +138,9 @@ func (lb *ListenerBuilder) buildVirtualOutboundListener() *ListenerBuilder {
 	// add extra addresses for the listener
 	if features.EnableDualStack && len(actualWildcards) > 1 {
 		ipTablesListener.AdditionalAddresses = util.BuildAdditionalAddresses(actualWildcards[1:], uint32(lb.push.Mesh.ProxyListenPort), lb.node)
+	} else if features.EnableAdditionalOutboundForEks && (lb.node.GetIPMode() == model.IPv6) {
+		// add an additional outbound listener for EKS IPv6 only clusters
+		ipTablesListener.AdditionalAddresses = util.BuildAdditionalAddresses(getWildcardsForIpv4(), uint32(lb.push.Mesh.ProxyListenPort), lb.node)
 	}
 
 	class := model.OutboundListenerClass(lb.node.Type)

@@ -650,6 +650,9 @@ var (
 	EnableDualStack = env.RegisterBoolVar("ISTIO_DUAL_STACK", false,
 		"If true, Istio will enable the Dual Stack feature.").Get()
 
+	EnableAdditionalOutboundForEks = env.RegisterBoolVar("ENABLE_ADDITIONAL_OUTBOUND_FOR_EKS", false,
+		"If enabled, pilot will configure an additional listener for outbound traffic in EKS IPv6 only clusters.").Get()
+
 	EnableOptimizedServicePush = env.RegisterBoolVar("ISTIO_ENABLE_OPTIMIZED_SERVICE_PUSH", true,
 		"If enabled, Istiod will not push changes on arbitraty annotation change.").Get()
 

@@ -98,3 +98,7 @@ func getSidecarInboundBindIPs(node *model.Proxy) []string {
 func getWildcardsAndLocalHost(ipMode model.IPMode) ([]string, []string) {
 	return wildCards[ipMode], localHosts[ipMode]
 }
+
+func getWildcardsForIpv4() []string {
+	return wildCards[model.IPv4]
+}
